@@ -44,13 +44,6 @@
         _attributeCaches = [[NSMutableSet alloc] init];
         _accessLock = [NSLock new];
         _pendingFlushCompletionBlocks = [NSMutableArray new];
-
-#if TARGET_OS_IPHONE
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(didReceiveMemoryWarning:)
-                                                     name:UIApplicationDidReceiveMemoryWarningNotification
-                                                   object:nil];
-#endif
     }
 
     return self;
@@ -286,11 +279,6 @@
         [_accessLock unlock];
     }
 
-}
-
-- (void)didReceiveMemoryWarning:(NSNotification *)notification
-{
-    [self flush:nil];
 }
 
 @end
